@@ -6,6 +6,7 @@ import java.time.LocalDateTime;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
+import org.springframework.data.jpa.domain.Specification;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.repository.NoRepositoryBean;
 import org.springframework.data.repository.PagingAndSortingRepository;
@@ -36,6 +37,18 @@ public interface SoftDeletesRepository<T, ID extends Serializable> extends Pagin
 	Iterable<T> findAllActive(Iterable<ID> ids);
 
 	T findOneActive(ID id);
+
+	Iterable<T> findActive(Specification<T> spec);
+
+	Iterable<T> findActive(Specification<T> spec, Sort sort);
+
+	Page<T> findActive(Specification<T> spec, Pageable pageable);
+
+	Iterable<T> findActive(Specification<T> spec, Iterable<ID> ids);
+
+	T findOneActive(Specification<T> spec);
+
+	T findOneActive(Specification<T> spec, ID id);
 
 	@Modifying
 	void softDelete(ID id);

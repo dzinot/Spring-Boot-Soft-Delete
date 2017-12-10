@@ -2,6 +2,8 @@
 .project
 .metadata
 .gradle
+.idea
+*.iml
 bin/
 tmp/
 *.tmp
